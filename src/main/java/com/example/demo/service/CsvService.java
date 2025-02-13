@@ -27,8 +27,6 @@ public class CsvService {
     }
 
     public void uploadMultipartFile(MultipartFile file) throws IOException, CsvException {
-        log.info("Starting to upload CSV file...");
-
         try {
             readAndPersistData(file.getInputStream());
         } catch (Exception e) {
@@ -38,6 +36,8 @@ public class CsvService {
     }
 
     private void readAndPersistData(InputStream inputStream) throws IOException, CsvException {
+        log.info("Starting to upload CSV file...");
+
         CSVReader csvReader = new CSVReader(new InputStreamReader(inputStream));
         List<String[]> records = csvReader.readAll();
 
