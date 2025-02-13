@@ -1,5 +1,6 @@
-package com.example.demo;
+package com.example.demo.controller;
 
+import com.example.demo.service.CsvService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -21,12 +22,12 @@ public class CsvController {
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<String> uploadCsvFile(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<String> uploadMultipartFile(@RequestParam("file") MultipartFile file) {
         log.info("Received file upload request.");
 
         try {
             log.info("Starting to process the CSV file...");
-            csvService.uploadCsv(file);
+            csvService.uploadMultipartFile(file);
             log.info("CSV file processed successfully and data persisted.");
             return new ResponseEntity<>("CSV file uploaded and data persisted successfully!", HttpStatus.OK);
         } catch (Exception e) {
